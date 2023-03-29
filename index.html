@@ -4,11 +4,43 @@
   <meta charset="UTF-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <script src="./main.js" type="module"></script>
-  <title>Empty Vite Project</title>
+  <title>Travel Journal</title>
 </head>
 <body>
-
-<main class="container"></main>
-
+<main class="container">
+  <form class="col-6" id="new-country">
+    <div class="mb-3">
+      <label for="country-name" class="form-label">Country:</label>
+      <select class="form-select" id="country-name">
+        <option value="not selected">Select a country</option>
+      </select>
+      <div class="invalid-feedback">
+        Please choose a country.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="date-visited" class="form-label">Date visited:</label>
+      <input id="date-visited" class="form-control" type="date" />
+      <div class="invalid-feedback" id="date-feedback">
+        Please add a date in the past.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="country-rating" class="form-label">Star rating:</label>
+    <select class="form-select" id="country-rating">
+      <option value="0">Give a rating out of 5</option>
+      <option value="1">⭐</option>
+      <option value="2">⭐ ⭐</option>
+      <option value="3">⭐ ⭐ ⭐</option>
+      <option value="4">⭐ ⭐ ⭐ ⭐</option>
+      <option value="5">⭐ ⭐ ⭐ ⭐ ⭐</option>
+    </select>
+      <div class="invalid-feedback">
+        Please rate the country out of 5.
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</main>
 </body>
 </html>
