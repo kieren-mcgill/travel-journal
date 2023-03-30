@@ -1,6 +1,6 @@
 import './bootstrap.css';
 import './style.css';
-import {isValidCountry, isDatePast, isDateSelected, isRatingSelected} from "./validation.js";
+import {isValidCountry, isValidDate, isRatingSelected} from "./validation.js";
 import { getList } from 'country-list-with-dial-code-and-flag';
 
 //npm package containing details of each country in the world
@@ -33,7 +33,7 @@ const countryValidDisplay = () => {
 const dateValidDisplay = () => {
     const value = dateVisitedInput.value
     dateVisitedInput.classList.remove('is-valid,', 'is-invalid')
-    isDateSelected(value) && isDatePast(value) ? dateVisitedInput.classList.add('is-valid'):
+    isValidDate(value) ? dateVisitedInput.classList.add('is-valid'):
         dateVisitedInput.classList.add('is-invalid')
 }
 
@@ -51,5 +51,6 @@ formEl.onsubmit = (event) => {
     countryValidDisplay()
     dateValidDisplay()
     ratingsValidDisplay()
+    console.log(dateVisitedInput.value)
 }
 
