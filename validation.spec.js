@@ -1,4 +1,4 @@
-import {isValidCountry, isDateSelected, isDatePast, isValidDate, isRatingSelected} from './validation'
+import {isValidCountry, isDateSelected, isDatePast, isValidDate, isRatingSelected, validityScore} from './validation'
 
 describe('isValidCountry', () => {
     test('returns true if a country has been selected', () => {
