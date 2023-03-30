@@ -1,10 +1,26 @@
+let validityScore = 0
+
+export const addScore = () => {
+    return validityScore
+}
 
 export const isValidCountry = (value) => {
-    return value !== 'not selected'
+    validityScore = 0
+    if (value !== 'not selected') {
+        validityScore++
+        return true
+    } else {
+        return false
+    }
 }
 
 export const isRatingSelected = (value) => {
-    return Number(value) > 0;
+    if (Number(value) > 0) {
+        validityScore++
+        return true
+    } else {
+        return false
+    }
 }
 
 export const isDateSelected = (value) => {
@@ -18,5 +34,10 @@ export const isDatePast  = (value) => {
 }
 
 export const isValidDate = (value) => {
-    return isDateSelected(value) && isDatePast(value)
+    if (isDateSelected(value) && isDatePast(value)) {
+        validityScore++
+        return true
+    } else {
+        return false
+    }
 }
