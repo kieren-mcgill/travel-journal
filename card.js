@@ -1,4 +1,4 @@
-import {COUNTRY_KEY, countryNameInput} from './main';
+import {COUNTRY_KEY, countryArray, countryNameInput} from './main';
 
 const cardContainerEl = document.getElementById('card-container')
 
@@ -12,24 +12,56 @@ export const populateCards = () => {
 }
 
 export const makeCard = (countryObject) => {
-    const classCard = document.createElement('div')
-    const cardHeader = document.createElement('div')
-    const cardTitle = document.createElement('h2')
-    const titleFlag = document.createElement('h1')
+    //Create elements in the card
+    const card = document.createElement('div')
+    const image = document.createElement('img')
+    const cardBody = document.createElement('div')
+    const title = document.createElement('h5')
+    const ratingScore = document.createElement('p')
+    const btnBox = document.createElement('div')
     const deleteBtn = document.createElement('button')
     const editBtn = document.createElement('button')
-    cardTitle.textContent = countryObject.name
-    titleFlag.textContent = countryObject.flag
+
+    const dateStamp = document.createElement("div")
+    const dateStampDate = document.createElement('p')
+
+//Nest the card elements
+    cardContainerEl.appendChild(card)
+    card.appendChild(image)
+    card.appendChild(cardBody)
+    cardBody.appendChild(title)
+    cardBody.appendChild(ratingScore)
+    cardBody.appendChild(btnBox)
+    btnBox.appendChild(editBtn)
+    btnBox.appendChild(deleteBtn)
+    card.appendChild(dateStamp)
+    dateStamp.appendChild(dateStampDate)
+
+    //Set the CSS/Bootstrap classes for each card element
+    card.classList.add('card', 'm-3')
+    image.classList.add('card-img-top')
+    image.src="./default-travel-image.jpeg"
+    editBtn.classList.add('edit-btn', 'btn', 'btn-sm', 'btn-outline-warning')
+    deleteBtn.classList.add('btn', 'btn-sm', 'btn-outline-danger')
+    dateStamp.classList.add('date-stamp')
+
+
+//Set the contents for each card element
+    dateStampDate.textContent = countryObject.date
+    title.textContent = `${countryObject.flag}   ${countryObject.name}`
+    const stars = () => {
+        let starString = ""
+        for (let i = 1; i <= countryObject.rating; i++) {
+            starString = starString + '⭐';
+        }
+        return starString
+    }
+    ratingScore.textContent = `Rating: ${stars()}`
     deleteBtn.textContent = 'Delete'
     editBtn.textContent = 'Edit'
-    cardHeader.appendChild(cardTitle)
-    cardHeader.appendChild(titleFlag)
-    classCard.appendChild(editBtn)
-    classCard.appendChild(cardHeader)
-    classCard.appendChild(deleteBtn)
-    cardContainerEl.appendChild(classCard)
 
-    const deleteCountry =() => {
+    //Define the actions for each button
+    const deleteCountry = () => {
         const gotArray = JSON.parse(localStorage.getItem(COUNTRY_KEY))
         const deletedArray = gotArray.filter((country) => country !== countryObject.code)
         localStorage.setItem(COUNTRY_KEY, JSON.stringify(deletedArray))

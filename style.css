@@ -1,0 +1,11 @@
+.card {
+    width: 18rem;
+    position: relative;
+}
+.edit-btn {
+    margin-left: auto;
+}
+
+.date-stamp {
+    position: absolute;
+}
