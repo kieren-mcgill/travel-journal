@@ -1,3 +1,5 @@
+
+
 let validityScore = 0
 
 export const addScore = () => {
@@ -40,4 +42,8 @@ export const isValidDate = (value) => {
     } else {
         return false
     }
+}
+
+export const isImageSize = (value) => {
+    return (value / 1024) <= 10
 }

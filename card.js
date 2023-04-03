@@ -1,4 +1,4 @@
-import {COUNTRY_KEY, countryArray, countryNameInput} from './main';
+import {COUNTRY_KEY, countryNameInput, countryRatingInput, dateVisitedInput, editMode} from './main';
 
 const cardContainerEl = document.getElementById('card-container')
 
@@ -40,7 +40,7 @@ export const makeCard = (countryObject) => {
     //Set the CSS/Bootstrap classes for each card element
     card.classList.add('card', 'm-3')
     image.classList.add('card-img-top')
-    image.src="./default-travel-image.jpeg"
+    image.src=`${countryObject.image}`
     editBtn.classList.add('edit-btn', 'btn', 'btn-sm', 'btn-outline-warning')
     deleteBtn.classList.add('btn', 'btn-sm', 'btn-outline-danger')
     dateStamp.classList.add('date-stamp')
@@ -76,15 +76,15 @@ export const makeCard = (countryObject) => {
 
     editBtn.onclick = (event) => {
         event.preventDefault()
+        editMode.push(countryObject.image)
+        console.log(editMode)
         countryNameInput.value = countryObject.name
+        dateVisitedInput.value = countryObject.date
+        countryRatingInput.value = countryObject.rating
         countryNameInput.disabled = true
         deleteCountry()
     }
-
 }
-
-
-
 
 
 

@@ -1,9 +1,9 @@
 import './bootstrap.css';
 import './style.css';
-import {isValidCountry, isValidDate, isRatingSelected, addScore} from "./validation.js";
+import {isValidCountry, isValidDate, isRatingSelected, isImageSize, addScore} from "./validation.js";
 import {getList} from 'country-list-with-dial-code-and-flag';
 import {newCountryObject} from './stored-object'
-import { populateCards } from './card'
+import {populateCards} from './card'
 
 //npm package containing details of each country in the world
 export const countryArray = getList()
@@ -19,6 +19,7 @@ export const formEl = document.getElementById('new-country')
 export const countryNameInput = document.getElementById('country-name')
 export const dateVisitedInput = document.getElementById('date-visited')
 export const countryRatingInput = document.getElementById(`country-rating`)
+export const imageUpload = document.getElementById('image-upload')
 
 //Create country dropdown menu
 countryArray.forEach((country) => {
@@ -50,6 +51,17 @@ const ratingsValidDisplay = () => {
         countryRatingInput.classList.add('is-invalid')
 }
 
+const imageUploadValidDisplay = () => {
+    const value = imgFile.size
+    imageUpload.classList.remove('is-valid', 'is-invalid')
+    if (!isImageSize(value)) {
+        imageUpload.classList.add('is-invalid')
+        imageUpload.value = ''
+    }
+}
+
+let imageUrl = "./default-travel-image.jpeg"
+export let editMode = [] /*Holds the previous dataURL for image when editing a card*/
 const clearForm = () => {
     countryNameInput.value = 'not selected'
     dateVisitedInput.value = ''
@@ -58,9 +70,27 @@ const clearForm = () => {
     countryRatingInput.classList.remove('is-valid')
     dateVisitedInput.classList.remove('is-valid')
     countryNameInput.disabled = false
+    imageUpload.value = ''
+    imageUrl = "./default-travel-image.jpeg"
 }
 
 populateCards()
+
+const reader = new FileReader()
+export let imgFile
+
+imageUpload.onchange = () => {
+    imgFile = imageUpload.files[0]
+    imageUploadValidDisplay()
+    reader.readAsDataURL(imgFile)
+}
+
+reader.onload = () => {
+    if (reader.result) {
+        imageUrl = reader.result
+    }
+}
+
 
 formEl.onsubmit = (event) => {
     event.preventDefault()
@@ -68,9 +98,10 @@ formEl.onsubmit = (event) => {
     dateValidDisplay()
     ratingsValidDisplay()
     if (addScore() === 3) {
-        newCountryObject()
+        newCountryObject(imageUrl)
         populateCards()
         clearForm()
     }
 }
+
 
