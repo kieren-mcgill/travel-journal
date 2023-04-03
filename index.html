@@ -39,10 +39,16 @@
         Please rate the country out of 5.
       </div>
     </div>
+    <div class="mb-3">
+      <label for="image-upload" class="form-label">Add a picture</label>
+      <input class="form-control" type="file" id="image-upload" accept="image/jpeg, image/png">
+      <div class="invalid-feedback" id="image-feedback">
+        Please choose an image that does not exceed 3kb
+      </div>
+    </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
   <div class="container" id="card-container">
-
   </div>
 </main>
 </body>

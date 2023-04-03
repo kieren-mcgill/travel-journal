@@ -1,4 +1,4 @@
-import {isValidCountry, isDateSelected, isDatePast, isValidDate, isRatingSelected, validityScore} from './validation'
+import {isValidCountry, isDateSelected, isDatePast, isValidDate, isRatingSelected, isImageSize} from './validation'
 
 describe('isValidCountry', () => {
     test('returns true if a country has been selected', () => {
@@ -66,6 +66,18 @@ describe('isValidDate', () => {
 
     test('returns false if a country has not been selected', () => {
         const result = isValidDate('');
+        expect(result).toEqual(false)
+    });
+})
+
+describe('isImageSize', () => {
+    test('returns true if an image file is no more than 10kb', () => {
+        const result = isImageSize(1509);
+        expect(result).toEqual(true)
+    });
+
+    test('returns false if an image file is more than 10kb', () => {
+        const result = isImageSize(12004);
         expect(result).toEqual(false)
     });
 })
