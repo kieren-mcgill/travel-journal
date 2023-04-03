@@ -7,7 +7,10 @@ export const newCountryObject = (inputtedValues) => {
         code: inputtedValues.code,
         date: inputtedValues.date,
         rating: inputtedValues.rating,
-        image: inputtedValues.image
+        image: inputtedValues.image,
+        stampTop: `${Math.floor(Math.random()*75)}px`,
+        stampLeft: `${Math.floor(Math.random()*175)}px`,
+        stampTurn: `${Math.floor((Math.random()*60))-30}deg`
     }
     const gotArray  = JSON.parse(localStorage.getItem(COUNTRY_KEY))
     gotArray.push(countryObject.code)

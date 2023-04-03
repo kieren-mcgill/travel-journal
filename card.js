@@ -44,7 +44,14 @@ export const makeCard = (countryObject) => {
     editBtn.classList.add('edit-btn', 'btn', 'btn-sm', 'btn-outline-warning')
     deleteBtn.classList.add('btn', 'btn-sm', 'btn-outline-danger')
     dateStamp.classList.add('date-stamp')
+    dateStampDate.classList.add('date-stamp-date')
+    title.classList.add('card-element')
+    ratingScore.classList.add('card-element')
+    btnBox.classList.add('card-element')
 
+    dateStamp.style.setProperty('top', `${countryObject.stampTop}`)
+    dateStamp.style.setProperty('left', `${countryObject.stampLeft}`)
+    dateStamp.style.setProperty('transform', `rotate(${countryObject.stampTurn})`)
 
 //Set the contents for each card element
     dateStampDate.textContent = countryObject.date
