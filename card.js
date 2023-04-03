@@ -1,4 +1,4 @@
-import {COUNTRY_KEY, countryNameInput, countryRatingInput, dateVisitedInput, editMode} from './main';
+import {COUNTRY_KEY, countryNameInput, countryRatingInput, dateVisitedInput} from './main';
 
 const cardContainerEl = document.getElementById('card-container')
 
@@ -76,12 +76,11 @@ export const makeCard = (countryObject) => {
 
     editBtn.onclick = (event) => {
         event.preventDefault()
-        editMode.push(countryObject.image)
-        console.log(editMode)
         countryNameInput.value = countryObject.name
         dateVisitedInput.value = countryObject.date
         countryRatingInput.value = countryObject.rating
-        countryNameInput.disabled = true
+        countryNameInput.disabled = true;
+        document.getElementById('image-url-hidden').value = countryObject.image
         deleteCountry()
     }
 }

@@ -60,8 +60,12 @@ const imageUploadValidDisplay = () => {
     }
 }
 
-let imageUrl = "./default-travel-image.jpeg"
-export let editMode = [] /*Holds the previous dataURL for image when editing a card*/
+const imageUrl = {
+    defaultUrl : "./default-travel-image.jpeg",
+    uploadUrl : ''
+}
+
+
 const clearForm = () => {
     countryNameInput.value = 'not selected'
     dateVisitedInput.value = ''
@@ -71,7 +75,8 @@ const clearForm = () => {
     dateVisitedInput.classList.remove('is-valid')
     countryNameInput.disabled = false
     imageUpload.value = ''
-    imageUrl = "./default-travel-image.jpeg"
+    document.getElementById('image-url-hidden').value = '';
+    imageUrl.uploadUrl = ''
 }
 
 populateCards()
@@ -83,22 +88,39 @@ imageUpload.onchange = () => {
     imgFile = imageUpload.files[0]
     imageUploadValidDisplay()
     reader.readAsDataURL(imgFile)
+    document.getElementById('image-url-hidden').value = '';
 }
 
 reader.onload = () => {
     if (reader.result) {
-        imageUrl = reader.result
+        imageUrl.uploadUrl = reader.result
     }
 }
 
-
 formEl.onsubmit = (event) => {
+    const countryInfo = countryArray.find((country) => country.name === countryNameInput.value)
+    const inputtedValues = {
+        name: countryInfo.name,
+        flag: countryInfo.flag,
+        code: countryInfo.code,
+        date: dateVisitedInput.value,
+        rating: countryRatingInput.value,
+    }
+    const hiddenUrl = document.getElementById('image-url-hidden').value
+    if (hiddenUrl !== '') {
+        inputtedValues.image = hiddenUrl
+    } else if (imageUrl.uploadUrl !== '') {
+        inputtedValues.image = imageUrl.uploadUrl
+    } else {
+        inputtedValues.image = imageUrl.defaultUrl
+    }
+
     event.preventDefault()
     countryValidDisplay()
     dateValidDisplay()
     ratingsValidDisplay()
     if (addScore() === 3) {
-        newCountryObject(imageUrl)
+        newCountryObject(inputtedValues)
         populateCards()
         clearForm()
     }
