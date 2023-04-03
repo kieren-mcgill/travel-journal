@@ -70,9 +70,10 @@ const clearForm = () => {
     countryNameInput.value = 'not selected'
     dateVisitedInput.value = ''
     countryRatingInput.value = 0
-    countryNameInput.classList.remove('is-valid')
-    countryRatingInput.classList.remove('is-valid')
-    dateVisitedInput.classList.remove('is-valid')
+    countryNameInput.classList.remove('is-valid', 'is-invalid')
+    countryRatingInput.classList.remove('is-valid', 'is-invalid')
+    dateVisitedInput.classList.remove('is-valid', 'is-invalid')
+    imageUpload.classList.remove('is-valid', 'is-invalid')
     countryNameInput.disabled = false
     imageUpload.value = ''
     document.getElementById('image-url-hidden').value = '';
