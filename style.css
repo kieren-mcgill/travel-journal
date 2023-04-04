@@ -1,7 +1,15 @@
 
 body {
-    background-image: url("./travel-background.avif");
+    position: relative;
+    background-image: url("./travel-background.jpg");
+    background-attachment: fixed;
+    font-family: 'Special Elite', cursive;
+}
 
+.navbar {
+    position: fixed;
+    width: 100%;
+    z-index: 10000;
 }
 
 .travel-logo {
@@ -9,26 +17,50 @@ body {
 }
 
 .main-container {
+    position: relative;
     display: flex;
     flex-direction: row;
 }
 
 .form-container {
-    background-color: white;
+    position: fixed;
+    display: flex;
+    background-color: #fdf7e6;
     border-radius: 10px;
-    height:425px;
+    height:650px;
     padding: 10px;
-    margin: 20px 10px;
+    margin: 115px 0 0 20px;
     width: 350px;
 }
 
+.log-para {
+    background-color: #fdf7e6;
+    display: none;
+    word-wrap:break-word;
+    position: absolute;
+    top: 0;
+    border-radius: 10px;
+    width: 97%;
+    height: 100%;
+    text-align: justify;
+    padding: 8px;
+}
+
+.edit-mode {
+    border: red dashed 3px;
+}
+
 .card-container {
+    margin-top: 100px;
+    margin-left: 380px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 
 }
 .card {
+    background-image: url("./passport-background.jpg");
+    background-size: cover;
     height: 300px;
     width: 18rem;
     padding: 3px;
@@ -42,6 +74,7 @@ body {
 .card-img-top {
     height: 150px;
     opacity: 0.5;
+    object-fit: cover;
 }
 
 .date-stamp {
@@ -57,6 +90,8 @@ body {
 .date-stamp-date {
     color: darkred;
     font-weight: bold;
+    margin: 2px 2px 0 2px;
+
 }
 
 .btn-sm {

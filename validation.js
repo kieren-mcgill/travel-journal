@@ -45,5 +45,5 @@ export const isValidDate = (value) => {
 }
 
 export const isImageSize = (value) => {
-    return (value / 1024) <= 10
+    return (value / 1024) <= 100
 }

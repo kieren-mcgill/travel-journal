@@ -7,6 +7,7 @@ export const newCountryObject = (inputtedValues) => {
         code: inputtedValues.code,
         date: inputtedValues.date,
         rating: inputtedValues.rating,
+        log: inputtedValues.log,
         image: inputtedValues.image,
         stampTop: `${Math.floor(Math.random()*75)}px`,
         stampLeft: `${Math.floor(Math.random()*175)}px`,

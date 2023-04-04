@@ -21,6 +21,8 @@ export const dateVisitedInput = document.getElementById('date-visited')
 export const countryRatingInput = document.getElementById(`country-rating`)
 export const imageUpload = document.getElementById('image-upload')
 
+export const logEntry = document.getElementById('log-entry')
+
 //Create country dropdown menu
 countryArray.forEach((country) => {
     const option = document.createElement('option')
@@ -70,14 +72,17 @@ const clearForm = () => {
     countryNameInput.value = 'not selected'
     dateVisitedInput.value = ''
     countryRatingInput.value = 0
+    logEntry.value = ''
     countryNameInput.classList.remove('is-valid', 'is-invalid')
-    countryRatingInput.classList.remove('is-valid', 'is-invalid')
-    dateVisitedInput.classList.remove('is-valid', 'is-invalid')
-    imageUpload.classList.remove('is-valid', 'is-invalid')
+    countryRatingInput.classList.remove('is-valid', 'is-invalid','edit-mode')
+    dateVisitedInput.classList.remove('is-valid', 'is-invalid','edit-mode')
+    imageUpload.classList.remove('is-valid', 'is-invalid','edit-mode')
+    logEntry.classList.remove('is-valid', 'is-invalid','edit-mode')
     countryNameInput.disabled = false
     imageUpload.value = ''
     document.getElementById('image-url-hidden').value = '';
     imageUrl.uploadUrl = ''
+    document.getElementById('form-title').textContent = 'Add a country'
 }
 
 populateCards()
@@ -106,6 +111,7 @@ formEl.onsubmit = (event) => {
         code: countryInfo.code,
         date: dateVisitedInput.value,
         rating: countryRatingInput.value,
+        log: logEntry.value
     }
     const hiddenUrl = document.getElementById('image-url-hidden').value
     if (hiddenUrl !== '') {
