@@ -4,7 +4,11 @@
   <meta charset="UTF-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <script src="./main.js" type="module"></script>
-  <title>Travel Journal</title>
+  <script src="https://kit.fontawesome.com/8f39fc9c95.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+  <title>TraveLog</title>
 </head>
 <body>
 <nav class="navbar bg-light">
@@ -15,9 +19,9 @@
     </a>
   </div>
 </nav>
-<main class="main-container">
-  <div class="container form-container col-lg-3 col-md-6 col-sm-9">
+<div class="container form-container col-lg-3 col-md-6 col-sm-9" id="form-container">
   <form class="col" id="new-country">
+    <h3 id="form-title">Add a country</h3>
     <div class="mb-3">
       <label for="country-name" class="form-label">Country:</label>
       <select class="form-select" id="country-name">
@@ -36,14 +40,14 @@
     </div>
     <div class="mb-3">
       <label for="country-rating" class="form-label">Star rating:</label>
-    <select class="form-select" id="country-rating">
-      <option value="0">Give a rating out of 5</option>
-      <option value="1">⭐</option>
-      <option value="2">⭐ ⭐</option>
-      <option value="3">⭐ ⭐ ⭐</option>
-      <option value="4">⭐ ⭐ ⭐ ⭐</option>
-      <option value="5">⭐ ⭐ ⭐ ⭐ ⭐</option>
-    </select>
+      <select class="form-select" id="country-rating">
+        <option value="0">Give a rating out of 5</option>
+        <option value="1">⭐</option>
+        <option value="2">⭐ ⭐</option>
+        <option value="3">⭐ ⭐ ⭐</option>
+        <option value="4">⭐ ⭐ ⭐ ⭐</option>
+        <option value="5">⭐ ⭐ ⭐ ⭐ ⭐</option>
+      </select>
       <div class="invalid-feedback">
         Please rate the country out of 5.
       </div>
@@ -52,13 +56,18 @@
       <label for="image-upload" class="form-label">Add a picture</label>
       <input class="form-control" type="file" id="image-upload" accept="image/jpeg, image/png">
       <div class="invalid-feedback" id="image-feedback">
-        Please choose an image that does not exceed 3kb
+        Please choose an image that does not exceed 100kb
       </div>
     </div>
+    <div class="mb-3">
+      <label for="log-entry" class="form-label">TraveLog entry:</label>
+      <textarea id="log-entry" class="form-control"></textarea>
+    </div>
     <input type="hidden" id="image-url-hidden"/>
-    <button type="submit" class="btn btn-primary" id="submit-btn">Submit</button>
+    <button type="submit" class="btn btn-outline-primary" id="submit-btn">Submit</button>
   </form>
-  </div>
+</div>
+<main class="main-container" id="main">
   <div class="container card-container" id="card-container"></div>
 </main>
 </body>
